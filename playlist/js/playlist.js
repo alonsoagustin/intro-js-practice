@@ -52,7 +52,24 @@ const musicCatalog = () => {
    * @param {{ title: string, artist: string, genre: string, duration: number }} song - The song to add to the playlist.
    * @throws {Error} If the playlist is not found.
    */
-  const addSongToPlaylist = (playlistName, song) => {};
+  const addSongToPlaylist = (playlistName, song) => {
+    // buscamos la playlist en el catálogo
+    const playlist = playlists.find(
+      (playlistItem) => playlistItem.name === playlistName
+    );
+
+    // devolvemos un error si no encontramos la playlist
+    if (!playlist) {
+      throw new Error("no existe esa playlist");
+    }
+
+    // actualizamos el catálogo
+    playlists = playlists.map((playlistItem) => {
+      return playlistItem.name === playlistName
+        ? { ...playlist, songs: [...playlist.songs, song] }
+        : playlistItem;
+    });
+  };
 
   /**
    * Removes a song from a specific playlist.
