@@ -72,3 +72,18 @@ const getDeveloperBySkill = (skill) => {
 };
 
 const developersJS = getDeveloperBySkill("javascript");
+
+const getProjects = () => {
+  /*
+      Obtiene los nombres de todos los proyectos de los desarrolladores del listado "datos".
+      Devuelve dicha informacion en un solo array.
+      Si no hay proyectos, devuelve un array vacío.
+      */
+
+  const projects = datos
+    .flatMap((desarrollador) => desarrollador.proyectos)
+    .map((proyecto) => proyecto.nombre);
+  return projects;
+};
+
+const allProjects = getProjects();
