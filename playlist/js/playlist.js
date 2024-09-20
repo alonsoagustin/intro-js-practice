@@ -136,7 +136,39 @@ const musicCatalog = () => {
    * @returns {Song[]} The list of sorted songs.
    * @throws {Error} If the playlist is not found or the criterion is invalid.
    */
-  const sortSongs = (playlistName, criterion) => {};
+  const sortSongs = (playlistName, criterion) => {
+    // buscamos la playlist
+    const playlist = playlists.find(
+      (playlistItem) => playlistItem.name === playlistName
+    );
+
+    // devolvemos un error si la playlist no existe
+    if (!playlist) throw new Error("No existe esa playlist");
+
+    // creamos un listado con las propiedades del objeto song
+    const properties = Object.keys(playlist.songs[0]);
+
+    // verificamos si existe una propiedad que coincida con el criterio de búsqueda
+    const criterionExist = properties.some(
+      (property) => property === criterion
+    );
+
+    // devolvemos un error si las canciones no tienen como propiedad el criterio de búsqueda
+    if (!criterionExist)
+      throw new Error(
+        "No podemos ordenar el listado de canciones con ese criterio"
+      );
+
+    // ordenamos el listado de canciones según el criterio de búsqueda
+    const sorted = playlist.songs.sort((a, b) => {
+      return criterion === "duration"
+        ? parseInt(a[criterion]) - parseInt(b[criterion])
+        : a[criterion].localeCompare(b[criterion]);
+    });
+
+    // devolvemos el listado de canciones
+    return sorted;
+  };
 
   return {
     createPlaylist,
