@@ -63,3 +63,17 @@ const user = {
   ],
   lookingForWork: true,
 };
+
+const findSubjectByKeyword = (keyword) => {
+  /*
+    Busca un módulo usando una palabra clave
+    Recibe una palabra clave como parámetro.
+    Devuelve un listado con todos los módulos que se encuentren en el objeto user y que contengan en su nombre dicha palabra clave.
+    En caso de no encontrar ningún módulo, devuelve un listado vacío.
+    */
+  const normalizedKeyword = keyword.trim().toLowerCase();
+  const filteredSubjects = user.subjects.filter((subject) =>
+    subject.name.trim().toLowerCase().includes(normalizedKeyword)
+  );
+  return filteredSubjects;
+};
