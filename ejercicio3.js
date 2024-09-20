@@ -45,15 +45,34 @@ arrayToRelativePath(input3); // 'programming/languages/easy/beginner/useful/pyth
 Crea una función para que con estos datos de entrada se produzca los siguientes resultados:
 */
 
+const splitDigits = (number) => {
+  /*
+    Permite convertir un numero a una cadena, separando sus digitos con un guion
+    Recibe un número como parametro.
+    Devuelve el número, convertido en string, separando con un guion medio todos sus digitos.
+    Input: 10 //// Output: "1-0"
+    Si el parámetro ingresado no es un número, imprime un error en consola y devuelve Null
+    */
+  try {
+    const input = +number;
+    if (typeof input !== "number" || isNaN(input)) {
+      throw new Error(`"${number}" no es un ${typeof 0}.`);
+    }
+    return number.toString().split("").join("-");
+  } catch (error) {
+    console.error("Ocurrió un error:", error.message);
+    return null;
+  }
+};
+
 const input4 = 10;
-// create your function here
-// yourFunction(input4); // '1-0'
+splitDigits(input4); // '1-0'
 
 const input5 = 1;
-//yourFunction(input5); // '1'
+splitDigits(input5); // '1'
 
 const input6 = 11234;
-//yourFunction(input6); // '1-1-2-3-4'
+splitDigits(input6); // '1-1-2-3-4'
 
 /*
 3.3 Ejercicio
