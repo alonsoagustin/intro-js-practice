@@ -79,12 +79,36 @@ splitDigits(input6); // '1-1-2-3-4'
 Crea una función para que con estos datos de entrada se produzca los siguientes resultados:
 */
 
+const getLengthAndReverse = (string) => {
+  /*
+    Permite contar la longitud de una cadena e invertir su orden.
+    Recibe un string como parametro.
+    Devuelve otro string con la longitud de la cadena original más el string original invertido.
+    Input: "string"//// Output: "6 gnirts"
+    Si el parametro ingresado no es un string, imprime un error en consola y devuelve Null
+    */
+
+  try {
+    if (typeof string !== "string") {
+      throw new Error(
+        `El parámetro debe ser string. Recibido: ${typeof string}`
+      );
+    }
+    const revesed = string.split("").reverse().join("");
+    const length = string.length;
+    const result = `${length} ${revesed}`;
+    return result;
+  } catch (error) {
+    console.error("Ocurrió un error:", error.message);
+    return null;
+  }
+};
+
 const input7 = "string";
-// create your function here
-// yourFunction(input7); // '6 gnirts'
+getLengthAndReverse(input7); // '6 gnirts'
 
 const input8 = "variable";
-// yourFunction(input8); // '8 elbairav'
+getLengthAndReverse(input8); // '8 elbairav'
 
 const input9 = "pointer";
-// yourFunction(input9); // '7 retniop'
+getLengthAndReverse(input9); // '7 retniop'
