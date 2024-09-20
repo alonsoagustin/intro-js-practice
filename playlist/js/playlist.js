@@ -108,7 +108,26 @@ const musicCatalog = () => {
    * @param {string} playlistName - The name of the playlist containing the song.
    * @param {string} title - The title of the song to mark as a favorite.
    */
-  const favoriteSong = (playlistName, title) => {};
+  const favoriteSong = (playlistName, title) => {
+    // buscamos la playlist en el catálogo
+    let playlist = playlists.find(
+      (playlistItem) => playlistItem.name === playlistName
+    );
+
+    // actualizamos el lista de canciones de la playlist
+    const songs = playlist.songs.map((songItem) => {
+      return songItem.title === title
+        ? { ...songItem, favorite: true }
+        : songItem;
+    });
+
+    // actualizamos el catálogo
+    playlists = playlists.map((playlistItem) => {
+      return playlistItem.name === playlistName
+        ? { ...playlist, songs }
+        : playlistItem;
+    });
+  };
 
   /**
    * Sorts songs in a specific playlist by a given criterion (title, artist, or duration).
