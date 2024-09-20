@@ -77,3 +77,23 @@ const findSubjectByKeyword = (keyword) => {
   );
   return filteredSubjects;
 };
+
+const displayStartDates = (array) => {
+  /*
+    Imprime en consola un listado con el nombre y la fecha de inicio de cada módulo.
+    Recibe un listado de objetos como parámetro.
+    Si el listado contiene al menos un objeto, imprime en la consola la propiedad "name" y la propiedad "date" de cada objeto.
+    Si el listado no contiene elementos, imprime en la consola 'No hemos encontrado ningún módulo.'
+  */
+  if (array.length > 0) {
+    array.forEach((element) =>
+      console.log(`El módulo "${element.name}" comienza el ${element.date}`)
+    );
+  } else {
+    console.log("No hemos encontrado ningún módulo.");
+  }
+};
+
+const react = findSubjectByKeyword("react");
+
+displayStartDates(react);
