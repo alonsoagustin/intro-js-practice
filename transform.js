@@ -53,3 +53,22 @@ const datos = [
     ],
   },
 ];
+
+const getDeveloperBySkill = (skill) => {
+  /*
+      Filtra desarrolladores por habilidad.
+      La habilidad a buscar, se normaliza para hacer la búsqueda insensible a mayúsculas y espacios.
+      Devuelve un array de desarrolladores que tienen la habilidad buscada. 
+      Si no se encuentra ninguno, devuelve un array vacío.
+      */
+
+  const normParam = skill.trim().toLowerCase();
+  return datos.filter((desarrollador) => {
+    const normSkills = desarrollador.habilidades.map((element) =>
+      element.trim().toLowerCase()
+    );
+    return normSkills.includes(normParam);
+  });
+};
+
+const developersJS = getDeveloperBySkill("javascript");
