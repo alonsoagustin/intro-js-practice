@@ -5,7 +5,13 @@ Nuestro cliente está intentando calcular el promedio de una lista de números p
 
 const calcularPromedio = (numeros) => {
   let sumaTotal = 0;
-  for (let i = 0; i <= numeros.length; i++) {
+
+  /* 
+    Corregimos la condicion del bucle for.
+    La variable i debe ser menor a la longitud del array, caso contrario i tendrá un valor undefined, y la suma de un número con un undefined es NaN (Not a Number)
+    */
+
+  for (let i = 0; i < numeros.length; i++) {
     sumaTotal += numeros[i];
   }
   const promedio = sumaTotal / numeros.length;
