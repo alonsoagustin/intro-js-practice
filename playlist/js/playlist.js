@@ -82,3 +82,5 @@ const musicCatalog = () => {
     favoriteSong,
   };
 };
+
+export default musicCatalog;
