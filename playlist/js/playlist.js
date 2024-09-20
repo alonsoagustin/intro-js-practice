@@ -77,7 +77,31 @@ const musicCatalog = () => {
    * @param {string} title - The title of the song to remove.
    * @throws {Error} If the playlist or song is not found.
    */
-  const removeSongFromPlaylist = (playlistName, title) => {};
+  const removeSongFromPlaylist = (playlistName, title) => {
+    // buscamos la playlist en el catálogo
+    const playlist = playlists.find(
+      (playlistItem) => playlistItem.name === playlistName
+    );
+
+    // devolvemos un error si la playlist no existe
+    if (!playlist) throw new Error("No existe esa playlist");
+
+    // verificamos si existe la canción
+    const songExist = playlist.songs.some((song) => song.title === title);
+
+    // devolvemos un error si la canción no existe
+    if (!songExist) throw new Error("No existe esa cancion");
+
+    // eliminamos la canción de la playlist
+    const songs = playlist.songs.filter((song) => song.title !== title);
+
+    // actualizamos la playlist
+    playlists = playlists.map((playlistItem) => {
+      return playlistItem.name === playlistName
+        ? { ...playlist, songs }
+        : playlistItem;
+    });
+  };
 
   /**
    * Marks a song as a favorite or removes the favorite status.
